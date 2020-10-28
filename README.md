@@ -1,1 +1,7 @@
-# projet-initial
+# Projet Mobile
+
+Équipe : 
+- Charles
+- Antoine
+- Gabriel
+- ?
