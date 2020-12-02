@@ -10,18 +10,21 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".vue.VueInscription"></activity>
-        <activity android:name=".vue.VueConnexion" />
-        <activity
-            android:name=".ui.login.VueConnexion"
-            android:label="@string/title_activity_vue_connexion" />
+        <activity android:name=".vue.VueConnexion">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
         <activity android:name=".vue.VueObjectif" />
         <activity android:name=".vue.VueTableauDesScores" />
         <activity android:name=".vue.VueAccueil">
-            <intent-filter>
+          <!--  <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            </intent-filter>-->
         </activity>
     </application>
 
