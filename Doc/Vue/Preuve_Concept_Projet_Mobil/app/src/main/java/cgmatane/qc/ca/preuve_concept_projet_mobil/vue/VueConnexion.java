@@ -13,6 +13,7 @@ import cgmatane.qc.ca.preuve_concept_projet_mobil.R;
 public class VueConnexion extends AppCompatActivity
 {
     protected Intent intentionNaviguerInscription;
+    protected Intent intentionNaviguerAccueil;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,7 +22,7 @@ public class VueConnexion extends AppCompatActivity
 
         Button buttonConnexion = (Button)findViewById(R.id.buttonConnexion);
 
-        //intentionNaviguerVueAccueil = new Intent(this, VueAccueil.class);
+        intentionNaviguerAccueil = new Intent(this, VueAccueil.class);
 
         buttonConnexion.setOnClickListener(
 
@@ -31,14 +32,15 @@ public class VueConnexion extends AppCompatActivity
                     {
                         // TODO : coder !
 
-                        Toast message = Toast.makeText(
+                        /*Toast message = Toast.makeText(
 
                                 getApplicationContext(),
                                 "Connexion Valider",
                                 Toast.LENGTH_LONG);
 
-                        message.show();
+                        message.show();*/
                         //startActivityForResult(intentionNaviguerProfit, ACTIVITE_PROFIT);
+                        startActivity(intentionNaviguerAccueil);
                     }
                 }
 

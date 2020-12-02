@@ -97,32 +97,6 @@ public class VueAccueil extends AppCompatActivity
                 }
         );
 
-        Button vueConnexion = (Button)findViewById(R.id.vueConnexion);
-
-        intentionNaviguerConnexion = new Intent(this, VueConnexion.class);
-
-        vueConnexion.setOnClickListener(
-
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view)
-                    {
-                        // TODO : coder !
-
-                        /*Toast message = Toast.makeText(
-
-                                getApplicationContext(),
-                                "vue tableau des scores",
-                                Toast.LENGTH_LONG);
-
-                        message.show();*/
-
-                        startActivity(intentionNaviguerConnexion);
-                        //startActivityForResult(intentionNaviguerProfit, ACTIVITE_PROFIT);
-                    }
-                }
-        );
-
         intentionNaviguerObjectif = new Intent(this, VueObjectif.class);
 
         vueAccueilListeObjectif.setOnItemClickListener(
