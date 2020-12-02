@@ -25,6 +25,7 @@ public class VueAccueil extends AppCompatActivity
 
     protected Intent intentionNaviguerTableauScores;
     protected Intent intentionNaviguerObjectif;
+    protected Intent intentionNaviguerConnexion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -91,6 +92,32 @@ public class VueAccueil extends AppCompatActivity
                         message.show();*/
 
                         startActivity(intentionNaviguerTableauScores);
+                        //startActivityForResult(intentionNaviguerProfit, ACTIVITE_PROFIT);
+                    }
+                }
+        );
+
+        Button vueConnexion = (Button)findViewById(R.id.vueConnexion);
+
+        intentionNaviguerConnexion = new Intent(this, VueConnexion.class);
+
+        vueConnexion.setOnClickListener(
+
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view)
+                    {
+                        // TODO : coder !
+
+                        /*Toast message = Toast.makeText(
+
+                                getApplicationContext(),
+                                "vue tableau des scores",
+                                Toast.LENGTH_LONG);
+
+                        message.show();*/
+
+                        startActivity(intentionNaviguerConnexion);
                         //startActivityForResult(intentionNaviguerProfit, ACTIVITE_PROFIT);
                     }
                 }

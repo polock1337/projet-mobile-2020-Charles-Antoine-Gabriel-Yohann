@@ -6,11 +6,21 @@
     android:layout_height="match_parent"
     tools:context=".vue.VueAccueil">
 
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/banniere" />
+
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="409dp"
         android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
+        android:background="#2D3E52"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
         app:layout_constraintEnd_toEndOf="parent"
@@ -33,6 +43,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:layout_marginBottom="60dp"
+        android:background="#13A99E"
         android:text="Tableau des scores"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -43,19 +54,38 @@
         android:id="@+id/vueProfil"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
         android:layout_marginBottom="8dp"
+        android:background="#13A99E"
         android:text="Profil"
         app:layout_constraintBottom_toBottomOf="@+id/toolbar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/toolbar" />
+        app:layout_constraintTop_toTopOf="@+id/toolbar"
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/nomUtilisateur"
         android:layout_width="111dp"
         android:layout_height="22dp"
         android:text="Nom utilisateur"
+        android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="@+id/toolbar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/toolbar" />
+
+    <Button
+        android:id="@+id/vueConnexion"
+        android:layout_width="88dp"
+        android:layout_height="56dp"
+        android:layout_marginEnd="250dp"
+        android:layout_marginRight="250dp"
+        android:layout_marginBottom="40dp"
+        android:background="#13A99E"
+        android:text="vueConnexion"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.225"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
