@@ -1,2 +1,2 @@
 include ':app'
-rootProject.name = "Preuve_Concept_Projet_Mobil"
+rootProject.name = "find_spot"

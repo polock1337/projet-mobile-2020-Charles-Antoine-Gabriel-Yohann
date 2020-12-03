@@ -1,4 +1,4 @@
-package cgmatane.qc.ca.preuve_concept_projet_mobil.vue;
+package cgmatane.qc.ca.findspot;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import cgmatane.qc.ca.preuve_concept_projet_mobil.R;
+import cgmatane.qc.ca.findspot.R;
 
 public class VueTableauDesScores extends AppCompatActivity
 {

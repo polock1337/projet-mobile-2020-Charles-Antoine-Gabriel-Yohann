@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".vue.VueAccueil">
+    android:background="#FFFFFF"
+    tools:context="cgmatane.qc.ca.findspot.VueAccueil">
 
     <ImageView
         android:id="@+id/imageView3"
@@ -20,8 +21,8 @@
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
-        android:layout_width="409dp"
-        android:layout_height="wrap_content"
+        android:layout_width="417dp"
+        android:layout_height="56dp"
         android:background="#2D3E52"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"

@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".vue.VueObjectif">
+    android:background="#FFFFFF"
+    tools:context="cgmatane.qc.ca.findspot.VueObjectif">
 
     <EditText
         android:id="@+id/descriptionObjectif"
@@ -18,8 +19,8 @@
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar4"
-        android:layout_width="413dp"
-        android:layout_height="59dp"
+        android:layout_width="441dp"
+        android:layout_height="76dp"
         android:background="#2D3E52"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"

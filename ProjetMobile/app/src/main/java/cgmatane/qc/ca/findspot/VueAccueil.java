@@ -1,4 +1,4 @@
-package cgmatane.qc.ca.preuve_concept_projet_mobil.vue;
+package cgmatane.qc.ca.findspot;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,13 +10,12 @@ import android.widget.Button;
 
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import cgmatane.qc.ca.preuve_concept_projet_mobil.R;
+import cgmatane.qc.ca.findspot.R;
 
 public class VueAccueil extends AppCompatActivity
 {

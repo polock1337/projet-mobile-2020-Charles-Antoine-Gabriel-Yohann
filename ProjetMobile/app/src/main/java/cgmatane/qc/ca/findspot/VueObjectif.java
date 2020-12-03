@@ -1,4 +1,4 @@
-package cgmatane.qc.ca.preuve_concept_projet_mobil.vue;
+package cgmatane.qc.ca.findspot;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import cgmatane.qc.ca.preuve_concept_projet_mobil.R;
+import cgmatane.qc.ca.findspot.R;
 
 public class VueObjectif extends AppCompatActivity
 {
