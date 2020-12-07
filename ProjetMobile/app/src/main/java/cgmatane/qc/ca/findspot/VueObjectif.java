@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
+import cgmatane.qc.ca.findspot.Utilitees.*;
 
 public class VueObjectif extends AppCompatActivity
 {
@@ -22,18 +23,19 @@ public class VueObjectif extends AppCompatActivity
     private static final int PERMISSION_CODE = 1000;
     private static final int IMAGE_CAPTURE_CODE = 1001;
     Button CaptureButton;
-    ImageView ImageView;
+    ImageView imageViewPhoto;
     Uri imageUri;
 
 
     protected Intent intentionNaviguerVueAccueil;
+    protected Intent intentionNaviguerVueLocalisation;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vue_objectif);
 
-        ImageView = findViewById(R.id.imageView);
+        imageViewPhoto = findViewById(R.id.imageViewPhoto);
         CaptureButton = findViewById(R.id.captureImageBoutton);
 
         Button retourVueListeObjectif = (Button)findViewById(R.id.retourVueListeObjectif);
@@ -59,7 +61,6 @@ public class VueObjectif extends AppCompatActivity
                 else{
                     openCamera();
                 }
-
             }
         });
 
@@ -83,9 +84,26 @@ public class VueObjectif extends AppCompatActivity
                         //startActivityForResult(intentionNaviguerProfit, ACTIVITE_PROFIT);
                     }
                 }
-
-
         );
+
+        intentionNaviguerVueLocalisation = new Intent(getApplicationContext(), VueLocalisation.class);
+
+        View viewRoot = (View)findViewById(R.id.viewRootObjectif);
+        viewRoot.setOnTouchListener(new OnSwipeTouchListener(getApplicationContext()) {
+            public void surSwipeDessus() {
+                //Toast.makeText(getApplicationContext(), "swipe dessus", Toast.LENGTH_SHORT).show();
+            }
+            public void surSwipeDroit() {
+                //Toast.makeText(getApplicationContext(), "swipe droit", Toast.LENGTH_SHORT).show();
+            }
+            public void surSwipeGauche() {
+                //Toast.makeText(getApplicationContext(), "swipe gauche", Toast.LENGTH_SHORT).show();
+                startActivity(intentionNaviguerVueLocalisation);
+            }
+            public void surSwipeDessous() {
+                //Toast.makeText(getApplicationContext(), "swipe dessous", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     public void naviguerRetourListeObjectif()
@@ -123,8 +141,7 @@ public class VueObjectif extends AppCompatActivity
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
         if (resultCode == RESULT_OK){
-            ImageView.setImageURI(imageUri);
+            imageViewPhoto.setImageURI(imageUri);
         }
     }
-
 }

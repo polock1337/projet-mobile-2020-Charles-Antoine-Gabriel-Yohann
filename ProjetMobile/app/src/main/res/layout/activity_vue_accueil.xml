@@ -10,19 +10,18 @@
     <ImageView
         android:id="@+id/imageView3"
         android:layout_width="409dp"
-        android:layout_height="117dp"
+        android:layout_height="120dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.089"
+        app:layout_constraintVertical_bias="0.123"
         app:srcCompat="@drawable/bannierelongue" />
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
-        android:layout_width="417dp"
-        android:layout_height="56dp"
+        android:layout_width="413dp"
+        android:layout_height="76dp"
         android:background="#2D3E52"
         android:minHeight="?attr/actionBarSize"
         android:theme="?attr/actionBarTheme"
@@ -33,9 +32,8 @@
 
     <ListView
         android:id="@+id/vueAccueilListeObjectif"
-        android:layout_width="411dp"
-        android:layout_height="343dp"
-        android:layout_marginTop="3dp"
+        android:layout_width="413dp"
+        android:layout_height="380dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -46,13 +44,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:layout_marginBottom="60dp"
+        android:layout_marginBottom="30dp"
         android:background="#13A99E"
         android:text="Tableau des scores"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/vueAccueilListeObjectif" />
+        app:layout_constraintTop_toBottomOf="@+id/vueAccueilListeObjectif"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/vueProfil"
@@ -66,12 +65,14 @@
         app:layout_constraintBottom_toBottomOf="@+id/toolbar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/toolbar"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.8" />
 
     <TextView
         android:id="@+id/nomUtilisateur"
         android:layout_width="111dp"
         android:layout_height="22dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
         android:text="Nom utilisateur"
         android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="@+id/toolbar"
