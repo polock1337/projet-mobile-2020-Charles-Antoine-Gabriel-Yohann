@@ -16,17 +16,17 @@ public class MainActivity extends AppCompatActivity {
 
         View viewRoot = (View)findViewById(R.id.viewRoot);
         viewRoot.setOnTouchListener(new OnSwipeTouchListener(getApplicationContext()) {
-            public void onSwipeTop() {
-                Toast.makeText(getApplicationContext(), "top swipe", Toast.LENGTH_SHORT).show();
+            public void surSwipeDessus() {
+                Toast.makeText(getApplicationContext(), "swipe dessus", Toast.LENGTH_SHORT).show();
             }
-            public void onSwipeRight() {
-                Toast.makeText(getApplicationContext(), "right swipe", Toast.LENGTH_SHORT).show();
+            public void surSwipeDroit() {
+                Toast.makeText(getApplicationContext(), "swipe droit", Toast.LENGTH_SHORT).show();
             }
-            public void onSwipeLeft() {
-                Toast.makeText(getApplicationContext(), "left swipe", Toast.LENGTH_SHORT).show();
+            public void surSwipeGauche() {
+                Toast.makeText(getApplicationContext(), "swipe gauche", Toast.LENGTH_SHORT).show();
             }
-            public void onSwipeBottom() {
-                Toast.makeText(getApplicationContext(), "bottom swipe", Toast.LENGTH_SHORT).show();
+            public void surSwipeDessous() {
+                Toast.makeText(getApplicationContext(), "swipe dessous", Toast.LENGTH_SHORT).show();
             }
 
         });
