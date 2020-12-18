@@ -9,6 +9,8 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.net.Uri;
@@ -22,8 +24,19 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FileDownloadTask;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.net.URL;
 import java.util.HashMap;
 
 import cgmatane.qc.ca.findspot.Donnee.ObjectifDAO;
@@ -140,6 +153,28 @@ public class VueObjectif extends AppCompatActivity {
                 this.objectif =objectif;
             }
         }
+        StorageReference storageRef =
+                FirebaseStorage.getInstance().getReference().child(objectif.getReference());
+        final File fichierLocal;
+        try {
+            fichierLocal = File.createTempFile("photoObjectif","jpg");
+            storageRef.getFile(fichierLocal)
+                    .addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                            Bitmap bitmap = BitmapFactory.decodeFile(fichierLocal.getAbsolutePath());
+                            imageViewPhoto.setImageBitmap(bitmap);
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    System.out.println("Image a fait une erreur");
+                }
+            });
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
     private void checkPermission()
     {
@@ -148,6 +183,7 @@ public class VueObjectif extends AppCompatActivity {
             return;
         }
     }
+
     public void naviguerRetourListeObjectif() {
         this.finish();
     }
@@ -177,14 +213,11 @@ public class VueObjectif extends AppCompatActivity {
             }
         }
     }
-
     //C'est rouge mais ça fonctionne bien
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK) {
-
-            imageViewPhoto.setImageURI(imageUri);
             GPSTracker gps = new GPSTracker(this);
 
             // Check if GPS enabled
@@ -198,7 +231,7 @@ public class VueObjectif extends AppCompatActivity {
                 double lat1 =  objectif.getLocalisation().getLatitude();
                 double lng1 = objectif.getLocalisation().getLongitude();
                 // lat1 and lng1 are the values of a previously stored location
-                if (distance(lat1, lng1, lat2, lng2) < 0.1) { // if distance < 0.1 miles we take locations as equal
+                if (distance(lat1, lng1, lat2, lng2) < 0.0621371) { // if distance < 0.1 miles we take locations as equal
                     Toast.makeText(getApplicationContext(), "Vous avez les points!", Toast.LENGTH_LONG).show();
                 }
                 else{
