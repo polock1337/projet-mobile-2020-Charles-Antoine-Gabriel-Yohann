@@ -38,8 +38,20 @@ public class VueLocalisation extends FragmentActivity implements OnMapReadyCallb
     public void onMapReady(GoogleMap googleMap) {
         carteGeo = googleMap;
 
+        Bundle b = getIntent().getExtras();
+        double lat = 0;
+        double lng = 0;
+        if(b != null)
+        {
+            lat = b.getDouble("lat");
+            lng = b.getDouble("lng");
+        }
+
+
+
+
         Circle cercle = carteGeo.addCircle(new CircleOptions()
-                .center(new LatLng(48.841960, -67.538009))
+                .center(new LatLng(lat, lng))
                 .radius(100)
                 .strokeColor(Color.BLACK)
                 .fillColor(0x220000FF)

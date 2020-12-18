@@ -15,10 +15,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import cgmatane.qc.ca.findspot.Donnee.ObjectifDAO;
+import cgmatane.qc.ca.findspot.Modele.Objectif;
 import cgmatane.qc.ca.findspot.R;
 
 public class VueAccueil extends AppCompatActivity
 {
+    ObjectifDAO objectifDAO;
     protected ListView vueAccueilListeObjectif;
     protected List<HashMap<String, String>> listeObjectif;
 
@@ -29,7 +32,9 @@ public class VueAccueil extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
+        objectifDAO = ObjectifDAO.getInstance();
         super.onCreate(savedInstanceState);
+        listeObjectif = new ArrayList<HashMap<String, String>>();
         setContentView(R.layout.activity_vue_accueil);
         vueAccueilListeObjectif = (ListView)findViewById(R.id.vueAccueilListeObjectif);
         System.out.println("vueAccueilListeObjectif !!!! : " + vueAccueilListeObjectif);
@@ -40,35 +45,11 @@ public class VueAccueil extends AppCompatActivity
                 this,
                 listeObjectif,
                 android.R.layout.two_line_list_item,
-                new String[] {"lieu", "objectif"},
+                new String[] {"nom", ""},
                 new int[] {android.R.id.text1, android.R.id.text2}
         );
 
         vueAccueilListeObjectif.setAdapter(adapter);
-
-        /*Button vueProfil = (Button)findViewById(R.id.vueProfil);
-
-        vueProfil.setOnClickListener(
-
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view)
-                    {
-                        // TODO : coder !
-
-                        Toast message = Toast.makeText(
-
-                                getApplicationContext(),
-                                "vue profile",
-                                Toast.LENGTH_LONG);
-
-                        message.show();
-
-                        //startActivity(intentionNaviguerAjouterLivre);
-                        //startActivityForResult(intentionNaviguerProfit, ACTIVITE_PROFIT);
-                    }
-                }
-        );*/
 
         Button vueTableauDesScore = (Button)findViewById(R.id.vueTableauDesScores);
 
@@ -80,18 +61,8 @@ public class VueAccueil extends AppCompatActivity
                     @Override
                     public void onClick(View view)
                     {
-                        // TODO : coder !
-
-                        /*Toast message = Toast.makeText(
-
-                                getApplicationContext(),
-                                "vue tableau des scores",
-                                Toast.LENGTH_LONG);
-
-                        message.show();*/
 
                         startActivity(intentionNaviguerTableauScores);
-                        //startActivityForResult(intentionNaviguerProfit, ACTIVITE_PROFIT);
                     }
                 }
         );
@@ -112,14 +83,9 @@ public class VueAccueil extends AppCompatActivity
                         HashMap<String,String> objectif =
                                 (HashMap<String, String>)
                                         vueListeObjectif.getItemAtPosition((int)positionItem);
-
-                        /*
-                        Toast message = Toast.makeText(getApplicationContext(),
-                                "Position "+positionItem + " titre " + livre.get("titre"),
-                                Toast.LENGTH_SHORT);
-                        message.show();
-                         */
-
+                        Bundle b = new Bundle();
+                        b.putString("id",objectif.get("id"));
+                        intentionNaviguerObjectif.putExtras(b);
                         startActivity(intentionNaviguerObjectif);
 
                     }}
@@ -129,19 +95,12 @@ public class VueAccueil extends AppCompatActivity
 
     public List<HashMap<String, String>> preparerListeObjectif()
     {
-        listeObjectif = new ArrayList<HashMap<String, String>>();
         System.out.println("Je suis dans preparerListeObjectif");
 
-        HashMap<String, String> objectif;
+        for (Objectif objectif : objectifDAO.listeObjectif) {
+            listeObjectif.add(objectif.obtenirObjectifPourAfficher());
+        }
 
-        objectif = new HashMap<String, String>();
-        objectif.put("lieu", "Parc des ile");
-        objectif.put("objectif", "Trouve les photos de l'equipe de hockey de matane des annee 19XX");
-        //System.out.println("PreparerListeObjectif()");
-        //System.out.println("objectif : " + objectif);
-
-        listeObjectif.add(objectif);
-        //System.out.println("la liste des objectif retourner : " + listeObjectif);
         return listeObjectif;
     }
 }

@@ -53,20 +53,6 @@
         app:layout_constraintTop_toBottomOf="@+id/vueAccueilListeObjectif"
         app:layout_constraintVertical_bias="0.0" />
 
-    <Button
-        android:id="@+id/vueProfil"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginBottom="8dp"
-        android:background="#13A99E"
-        android:text="Profil"
-        app:layout_constraintBottom_toBottomOf="@+id/toolbar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/toolbar"
-        app:layout_constraintVertical_bias="0.8" />
-
     <TextView
         android:id="@+id/nomUtilisateur"
         android:layout_width="111dp"

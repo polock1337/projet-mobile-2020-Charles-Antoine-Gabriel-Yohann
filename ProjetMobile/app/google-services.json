@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "92581721229",
+    "project_id": "projet-mobile-4bc8d",
+    "storage_bucket": "projet-mobile-4bc8d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:92581721229:android:2a371ede9ab82ccaf51ec4",
+        "android_client_info": {
+          "package_name": "cgmatane.qc.ca.findspot"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "92581721229-2ob61775v80ckkmtvrn20mpa6n11134s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBXTz32RzEkQaVCv9Dg752Qa2tksNKp-DI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "92581721229-2ob61775v80ckkmtvrn20mpa6n11134s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import cgmatane.qc.ca.findspot.Donnee.ObjectifDAO;
 import cgmatane.qc.ca.findspot.R;
 
 public class VueConnexion extends AppCompatActivity
@@ -17,6 +18,7 @@ public class VueConnexion extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ObjectifDAO objectifDAO = ObjectifDAO.getInstance();
         setContentView(R.layout.activity_vue_connexion);
 
         Button buttonConnexion = (Button)findViewById(R.id.buttonConnexion);

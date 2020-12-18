@@ -56,19 +56,6 @@
         app:layout_constraintTop_toTopOf="@+id/toolbar4" />
 
     <Button
-        android:id="@+id/vueProfil"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:background="#13A99E"
-        android:text="Profil"
-        app:layout_constraintBottom_toBottomOf="@+id/toolbar4"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/toolbar4"
-        app:layout_constraintVertical_bias="0.571" />
-
-    <Button
         android:id="@+id/retourVueListeObjectif"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -81,11 +68,14 @@
 
     <TextView
         android:id="@+id/nomLieuObjectif"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="68dp"
+        android:layout_width="383dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="136dp"
         android:text="Lieu de recherche"
+        android:textSize="32dp"
+        android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.51"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar4" />
 
@@ -93,12 +83,13 @@
         android:id="@+id/descriptionObjectif"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
         android:text="Ce qu'il faut rechercher"
+        app:layout_constraintBottom_toTopOf="@+id/nomLieuObjectif"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.513"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nomLieuObjectif" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar4"
+        app:layout_constraintVertical_bias="0.632" />
 
     <View
         android:id="@+id/viewRootObjectif"
@@ -107,7 +98,7 @@
         android:layout_marginTop="1dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.333"
+        app:layout_constraintHorizontal_bias="0.666"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar4"
         app:layout_constraintVertical_bias="0.0" />
@@ -121,7 +112,9 @@
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/imageViewPhoto"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.517"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/descriptionObjectif" />
+        app:layout_constraintTop_toBottomOf="@+id/descriptionObjectif"
+        app:layout_constraintVertical_bias="0.834" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
