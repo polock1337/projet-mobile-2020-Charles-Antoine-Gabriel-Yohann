@@ -1,15 +1,23 @@
 package cgmatane.qc.ca.findspot;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -27,7 +35,6 @@ public class VueAccueil extends AppCompatActivity
 
     protected Intent intentionNaviguerTableauScores;
     protected Intent intentionNaviguerObjectif;
-    protected Intent intentionNaviguerConnexion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -38,18 +45,7 @@ public class VueAccueil extends AppCompatActivity
         setContentView(R.layout.activity_vue_accueil);
         vueAccueilListeObjectif = (ListView)findViewById(R.id.vueAccueilListeObjectif);
         System.out.println("vueAccueilListeObjectif !!!! : " + vueAccueilListeObjectif);
-        listeObjectif = preparerListeObjectif();
-        //System.out.println("la liste objectif : " + listeObjectif);
-
-        SimpleAdapter adapter = new SimpleAdapter(
-                this,
-                listeObjectif,
-                android.R.layout.two_line_list_item,
-                new String[] {"nom", ""},
-                new int[] {android.R.id.text1, android.R.id.text2}
-        );
-
-        vueAccueilListeObjectif.setAdapter(adapter);
+        preparerListeObjectif();
 
         Button vueTableauDesScore = (Button)findViewById(R.id.vueTableauDesScores);
 
@@ -93,14 +89,36 @@ public class VueAccueil extends AppCompatActivity
     }
 
 
-    public List<HashMap<String, String>> preparerListeObjectif()
+    public void preparerListeObjectif()
     {
         System.out.println("Je suis dans preparerListeObjectif");
+        Task<QuerySnapshot> db = FirebaseFirestore.getInstance().collection("objectif")
+            .get();
+        db.addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+        @Override
+        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+            if (task.isSuccessful()) {
+                    for (Objectif objectif : objectifDAO.listeObjectif) {
+                        listeObjectif.add(objectif.obtenirObjectifPourAfficher());
+                        findViewById(R.id.loadingPanel).setVisibility(View.GONE);
+                        afficherObjectif();
 
-        for (Objectif objectif : objectifDAO.listeObjectif) {
-            listeObjectif.add(objectif.obtenirObjectifPourAfficher());
-        }
+                    }
 
-        return listeObjectif;
+                }
+            }
+        });
+    }
+    private void afficherObjectif()
+    {
+        SimpleAdapter adapter = new SimpleAdapter(
+                this,
+                listeObjectif,
+                android.R.layout.two_line_list_item,
+                new String[] {"nom", ""},
+                new int[] {android.R.id.text1, android.R.id.text2}
+        );
+
+        vueAccueilListeObjectif.setAdapter(adapter);
     }
 }

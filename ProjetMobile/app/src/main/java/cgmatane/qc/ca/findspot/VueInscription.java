@@ -18,8 +18,6 @@ public class VueInscription extends AppCompatActivity {
 
         Button validerInscription = (Button)findViewById(R.id.validerInscription);
 
-        //intentionNaviguerVueAccueil = new Intent(this, VueAccueil.class);
-
         validerInscription.setOnClickListener(
 
                 new View.OnClickListener() {
@@ -35,7 +33,6 @@ public class VueInscription extends AppCompatActivity {
                                 Toast.LENGTH_LONG);
 
                         message.show();
-                        //startActivityForResult(intentionNaviguerProfit, ACTIVITE_PROFIT);
                     }
                 }
 

@@ -206,9 +206,9 @@ public class VueObjectif extends AppCompatActivity {
             case PERMISSION_CODE: {
                 if (grantResults.length > 0 && grantResults[0] ==
                         PackageManager.PERMISSION_DENIED) {
-                    openCamera();
-                } else {
                     Toast.makeText(this, "Permission refuser...", Toast.LENGTH_SHORT).show();
+                } else {
+                    openCamera();
                 }
             }
         }
@@ -231,25 +231,21 @@ public class VueObjectif extends AppCompatActivity {
                 double lat1 =  objectif.getLocalisation().getLatitude();
                 double lng1 = objectif.getLocalisation().getLongitude();
                 // lat1 and lng1 are the values of a previously stored location
-                if (distance(lat1, lng1, lat2, lng2) < 0.0621371) { // if distance < 0.1 miles we take locations as equal
+                if (distance(lat1, lng1, lat2, lng2) < 0.0124274) { // Si la distance est égal ou moins de 20 mètre
                     Toast.makeText(getApplicationContext(), "Vous avez les points!", Toast.LENGTH_LONG).show();
                 }
                 else{
                     Toast.makeText(getApplicationContext(), "Pas de points!", Toast.LENGTH_LONG).show();
                 }
-                // \n is for new line
                 Toast.makeText(getApplicationContext(), "Your Location is - \nLat: " + latitude + "\nLong: " + longitude, Toast.LENGTH_LONG).show();
             } else {
-                // Can't get location.
-                // GPS or network is not enabled.
-                // Ask user to enable GPS/network in settings.
                 gps.showSettingsAlert();
             }
         }
     }
     private double distance(double lat1, double lng1, double lat2, double lng2) {
 
-        double earthRadius = 3958.75; // in miles, change to 6371 for kilometer output
+        double earthRadius = 3958.75; // en miles, changer pour 6371 pour que le transformer en kilometer
 
         double dLat = Math.toRadians(lat2-lat1);
         double dLng = Math.toRadians(lng2-lng1);
@@ -264,7 +260,7 @@ public class VueObjectif extends AppCompatActivity {
 
         double dist = earthRadius * c;
 
-        return dist; // output distance, in MILES
+        return dist; // en MILES
     }
 
 

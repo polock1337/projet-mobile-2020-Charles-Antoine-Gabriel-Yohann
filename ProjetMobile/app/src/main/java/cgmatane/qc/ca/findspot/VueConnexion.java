@@ -7,9 +7,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import cgmatane.qc.ca.findspot.Donnee.ObjectifDAO;
-import cgmatane.qc.ca.findspot.R;
-
 public class VueConnexion extends AppCompatActivity
 {
     protected Intent intentionNaviguerInscription;
@@ -18,7 +15,6 @@ public class VueConnexion extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ObjectifDAO objectifDAO = ObjectifDAO.getInstance();
         setContentView(R.layout.activity_vue_connexion);
 
         Button buttonConnexion = (Button)findViewById(R.id.buttonConnexion);
@@ -31,16 +27,6 @@ public class VueConnexion extends AppCompatActivity
                     @Override
                     public void onClick(View view)
                     {
-                        // TODO : coder !
-
-                        /*Toast message = Toast.makeText(
-
-                                getApplicationContext(),
-                                "Connexion Valider",
-                                Toast.LENGTH_LONG);
-
-                        message.show();*/
-                        //startActivityForResult(intentionNaviguerProfit, ACTIVITE_PROFIT);
                         startActivity(intentionNaviguerAccueil);
                     }
                 }
@@ -58,18 +44,8 @@ public class VueConnexion extends AppCompatActivity
                     @Override
                     public void onClick(View view)
                     {
-                        // TODO : coder !
-
-                        /*Toast message = Toast.makeText(
-
-                                getApplicationContext(),
-                                "vue tableau des scores",
-                                Toast.LENGTH_LONG);
-
-                        message.show();*/
 
                         startActivity(intentionNaviguerInscription);
-                        //startActivityForResult(intentionNaviguerProfit, ACTIVITE_PROFIT);
                     }
                 }
         );

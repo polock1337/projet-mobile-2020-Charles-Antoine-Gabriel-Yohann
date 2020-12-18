@@ -1,8 +1,11 @@
 package cgmatane.qc.ca.findspot;
 
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
@@ -12,13 +15,11 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.CameraPosition;
-import com.google.android.gms.maps.model.Circle;
 import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
 
-import cgmatane.qc.ca.findspot.R;
+import java.util.Random;
+
 
 public class VueLocalisation extends FragmentActivity implements OnMapReadyCallback {
 
@@ -28,7 +29,6 @@ public class VueLocalisation extends FragmentActivity implements OnMapReadyCallb
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vue_localisation);
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
@@ -37,21 +37,30 @@ public class VueLocalisation extends FragmentActivity implements OnMapReadyCallb
     @Override
     public void onMapReady(GoogleMap googleMap) {
         carteGeo = googleMap;
-
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                == PackageManager.PERMISSION_GRANTED) {
+            if (carteGeo != null) {
+                carteGeo.setMyLocationEnabled(true);
+            }
+        }
         Bundle b = getIntent().getExtras();
         double lat = 0;
         double lng = 0;
+
         if(b != null)
         {
             lat = b.getDouble("lat");
             lng = b.getDouble("lng");
         }
+        /*Changement da la position pour diffuculté*/
+        Random random = new Random();
+        double  randomLat = 0 + random.nextDouble() * (0.0005 - 0);
+        double  randomLng = 0 + random.nextDouble() * (0.0005 - 0);
 
 
 
-
-        Circle cercle = carteGeo.addCircle(new CircleOptions()
-                .center(new LatLng(lat, lng))
+        carteGeo.addCircle(new CircleOptions()
+                .center(new LatLng(lat+randomLat, lng+randomLng))
                 .radius(100)
                 .strokeColor(Color.BLACK)
                 .fillColor(0x220000FF)
