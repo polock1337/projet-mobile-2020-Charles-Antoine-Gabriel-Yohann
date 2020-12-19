@@ -14,6 +14,11 @@ Donc, pour l'aspect technologique, l'application sera créée en Android Java, a
 
 ## Résumé de la structure : 
 
-Il y aurais une page d'acceuil ou il faut se connecter ou créer un compte, ensuite on arrive sur la page du jeu ou il y a une liste de photo de point à trouver avec un bouton "leaderboard" qui mène vers une page avec un "leaderboard" des meilleurs joueurs. Par la suite, si on clique sur une des photos dans la liste, ça ouvre une page avec les infos sur la photo à trouver et une carte "google map" avec le tracer pour arriver au lieu ou il faut trouver la photo. Au dessous de cette page, il y a un lien pour prendre une photo, donc si on prend une photo et l'emplacement est mauvais l'application lance une alerte mauvais emplacement veuillez réassayer et si on prend une photo et l'emplacement est le bon l'application lance une alerte bravo vous avez trouver le bon emplacement voici des points et ça retourne ensuite à l'écran de jeu principale.
+Il y aurais une page d'acceuil ou il faut se connecter ou créer un compte, ensuite on arrive sur la page du jeu ou il y a une de point à trouver avec un bouton "leaderboard" qui mène vers une page avec un "leaderboard" des meilleurs joueurs. Par la suite, si on clique sur un des objectifs dans la liste, ça ouvre une page avec les infos sur la photo à trouver et une carte "google map" avec le tracer pour arriver au lieu ou il faut trouver la photo. Au dessous de cette page, il y a un lien pour prendre une photo, donc si on prend une photo et l'emplacement est mauvais l'application lance une alerte mauvais emplacement veuillez réassayer et si on prend une photo et l'emplacement est le bon l'application lance une alerte bravo vous avez trouver le bon emplacement voici des points et ça retourne ensuite à l'écran de jeu principale.
 
 Donc, il y aurais une page acceuil, une page connexion, une page créer un compte, une page acceuil du jeu , une page objectif et une page leaderboard.
+
+## À Noté :  
+
+- Oublie de faire la LIVRAISON_VUES et la LIVRAISON_CAPTEURS 
+- Puisque notre projet Firebase est un projet gratuit, on ne peut pas faire de vrai export du firestore, c'est pourquoi il est sous forme de capture d'écran. Aussi, les autres captures d'écrans sont simplements là pour démontrer la structure des autres modules firebase que l'on utilise.
