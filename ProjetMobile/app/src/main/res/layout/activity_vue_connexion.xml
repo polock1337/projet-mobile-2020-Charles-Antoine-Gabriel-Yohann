@@ -20,7 +20,7 @@
         app:srcCompat="@drawable/bannierelongue" />
 
     <EditText
-        android:id="@+id/champsNomUtilisateur"
+        android:id="@+id/champsEmail"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -40,7 +40,7 @@
         android:layout_marginTop="20dp"
         android:text="Mot de passe"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/champsNomUtilisateur" />
+        app:layout_constraintTop_toBottomOf="@+id/champsEmail" />
 
     <EditText
         android:id="@+id/champMotDePasseUtilisateur"
@@ -61,7 +61,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="72dp"
-        android:text="Nom de compte"
+        android:text="Email"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageViewPhoto" />
 

@@ -26,6 +26,13 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
@@ -56,6 +63,11 @@ public class VueObjectif extends AppCompatActivity {
     protected Intent intentionNaviguerVueAccueil;
     protected Intent intentionNaviguerVueLocalisation;
 
+    private FirebaseUser user;
+    private DatabaseReference reference;
+
+    private String nomID;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,6 +76,30 @@ public class VueObjectif extends AppCompatActivity {
 
         imageViewPhoto = findViewById(R.id.imageViewPhoto);
         CaptureButton = findViewById(R.id.captureImageBoutton);
+
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        reference = FirebaseDatabase.getInstance().getReference("Utilisateurs");
+        nomID = user.getUid();
+
+        final TextView nomTextView = (TextView) findViewById(R.id.nomUtilisateur);
+
+        reference.child(nomID).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                Utilisateur profilUtilisateur = snapshot.getValue(Utilisateur.class);
+
+                if(profilUtilisateur != null){
+                    String nom = profilUtilisateur.nom;
+
+                    nomTextView.setText(nom);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Toast.makeText(VueObjectif.this,"Un probleme est survenu", Toast.LENGTH_LONG).show();
+            }
+        });
 
         Button retourVueListeObjectif = (Button) findViewById(R.id.retourVueListeObjectif);
         nomLieuObjectif = (TextView) findViewById(R.id.nomLieuObjectif);
