@@ -2,19 +2,33 @@
   "Utilisateurs" : {
     "27JFIyQOF4gpdZCVeDx1VtPOjZy2" : {
       "email" : "anto45_hack@outlook.fr",
-      "nom" : "Thonio1337"
+      "nom" : "Thonio1337",
+      "score" : "0"
+    },
+    "6rc8oqRkbWY9x5yfQwrlJFVfxe03" : {
+      "email" : "charlestest@gmail.com",
+      "nom" : "charlestest",
+      "score" : "0"
     },
     "QoZHpQp7STfu0yanWOWLitJIsPS2" : {
       "email" : "test@gmail.com",
-      "nom" : "test"
+      "nom" : "test",
+      "score" : "0"
     },
     "aTtUIkmOfcUHm5OJ2vWyVxKN6BN2" : {
       "email" : "renebl@hotmail.com",
-      "nom" : "belangerrene"
+      "nom" : "belangerrene",
+      "score" : "0"
     },
     "lfMR8gXjxXfWdt0KWlIM7ZafzCQ2" : {
       "email" : "moudou1@hotmail.com",
-      "nom" : "moudou1"
+      "nom" : "moudou1",
+      "score" : "0"
+    },
+    "pcJwk84bmtbpDeN23OtxKAMGKT03" : {
+      "email" : "CharlesCarrier1337@hotmail.com",
+      "nom" : "CharlesC",
+      "score" : "200"
     }
   }
 }
