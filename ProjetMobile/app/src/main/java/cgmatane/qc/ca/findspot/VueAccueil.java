@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -25,7 +24,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
@@ -34,7 +32,7 @@ import java.util.List;
 
 import cgmatane.qc.ca.findspot.Donnee.ObjectifDAO;
 import cgmatane.qc.ca.findspot.Modele.Objectif;
-import cgmatane.qc.ca.findspot.R;
+import cgmatane.qc.ca.findspot.Modele.Utilisateur;
 
 public class VueAccueil extends AppCompatActivity
 {
@@ -49,6 +47,9 @@ public class VueAccueil extends AppCompatActivity
     private DatabaseReference reference;
 
     private String nomID;
+    private String scoreID;
+
+    Utilisateur profilUtilisateur;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -67,21 +68,25 @@ public class VueAccueil extends AppCompatActivity
 
         final TextView nomTextView = (TextView) findViewById(R.id.nomUtilisateur);
 
+        final TextView scoreTextView = (TextView) findViewById(R.id.scoreUtilisateur);
+
         reference.child(nomID).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                Utilisateur profilUtilisateur = snapshot.getValue(Utilisateur.class);
+                profilUtilisateur = snapshot.getValue(Utilisateur.class);
 
                 if(profilUtilisateur != null){
                     String nom = profilUtilisateur.nom;
+                    String score = profilUtilisateur.score;
 
                     nomTextView.setText(nom);
+                    scoreTextView.setText("Score : " + score);
                 }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(VueAccueil.this,"Un probleme est survenu", Toast.LENGTH_LONG).show();
+                Toast.makeText(VueAccueil.this,"Un problème est survenu!", Toast.LENGTH_LONG).show();
             }
         });
 
@@ -126,11 +131,9 @@ public class VueAccueil extends AppCompatActivity
         );
     }
 
-
-
     public void preparerListeObjectif()
     {
-        System.out.println("Je suis dans preparerListeObjectif");
+        //System.out.println("Je suis dans preparerListeObjectif");
         Task<QuerySnapshot> db = FirebaseFirestore.getInstance().collection("objectif")
             .get();
         db.addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -141,13 +144,12 @@ public class VueAccueil extends AppCompatActivity
                         listeObjectif.add(objectif.obtenirObjectifPourAfficher());
                         findViewById(R.id.loadingPanel).setVisibility(View.GONE);
                         afficherObjectif();
-
                     }
-
                 }
             }
         });
     }
+
     private void afficherObjectif()
     {
         SimpleAdapter adapter = new SimpleAdapter(

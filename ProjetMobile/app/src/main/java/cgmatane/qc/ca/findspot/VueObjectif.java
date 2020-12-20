@@ -6,26 +6,24 @@ import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
 import android.content.ContentValues;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.location.LocationListener;
-import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -33,21 +31,16 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.net.URL;
-import java.util.HashMap;
 
 import cgmatane.qc.ca.findspot.Donnee.ObjectifDAO;
 import cgmatane.qc.ca.findspot.Modele.Objectif;
+import cgmatane.qc.ca.findspot.Modele.Utilisateur;
 import cgmatane.qc.ca.findspot.Utilitees.*;
 
 public class VueObjectif extends AppCompatActivity {
@@ -68,6 +61,8 @@ public class VueObjectif extends AppCompatActivity {
 
     private String nomID;
 
+    Utilisateur profilUtilisateur;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,15 +78,19 @@ public class VueObjectif extends AppCompatActivity {
 
         final TextView nomTextView = (TextView) findViewById(R.id.nomUtilisateur);
 
+        final TextView scoreTextView = (TextView) findViewById(R.id.scoreUtilisateur);
+
         reference.child(nomID).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                Utilisateur profilUtilisateur = snapshot.getValue(Utilisateur.class);
+                profilUtilisateur = snapshot.getValue(Utilisateur.class);
 
                 if(profilUtilisateur != null){
                     String nom = profilUtilisateur.nom;
+                    String score = profilUtilisateur.score;
 
                     nomTextView.setText(nom);
+                    scoreTextView.setText("Score : " + score);
                 }
             }
 
@@ -131,18 +130,8 @@ public class VueObjectif extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        // TODO : coder !
-
-                       /* Toast message = Toast.makeText(
-
-                                getApplicationContext(),
-                                "vue Ecran Accueil",
-                                Toast.LENGTH_LONG);
-
-                        message.show();*/
 
                         naviguerRetourListeObjectif();
-                        //startActivityForResult(intentionNaviguerProfit, ACTIVITE_PROFIT);
                     }
                 }
         );
@@ -173,6 +162,7 @@ public class VueObjectif extends AppCompatActivity {
             }
         });
     }
+
     private void setObjectifInfo()
     {
         Bundle b = getIntent().getExtras();
@@ -267,13 +257,33 @@ public class VueObjectif extends AppCompatActivity {
                 double lat1 =  objectif.getLocalisation().getLatitude();
                 double lng1 = objectif.getLocalisation().getLongitude();
                 // lat1 and lng1 are the values of a previously stored location
-                if (distance(lat1, lng1, lat2, lng2) < 0.0124274) { // Si la distance est égal ou moins de 20 mètre
-                    Toast.makeText(getApplicationContext(), "Vous avez les points!", Toast.LENGTH_LONG).show();
+                if (distance(lat1, lng1, lat2, lng2) < 0.0124274) { // 0.0124274 : Si la distance est égal ou moins de 20 mètre
+                    Toast.makeText(getApplicationContext(), "Bravo vous avez trouver l'objectif!", Toast.LENGTH_LONG).show();
+
+                    String newScore = profilUtilisateur.score;
+
+                    int newScoreInt = Integer.parseInt(newScore);
+
+                    newScoreInt += 100;
+
+                    newScore = Integer.toString(newScoreInt);
+
+                    FirebaseDatabase.getInstance().getReference("Utilisateurs")
+                            .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("score").setValue(newScore).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            if(task.isSuccessful()){
+                                naviguerRetourListeObjectif();
+                            }else {
+                                Toast.makeText(getApplicationContext(), "L'ajout du score à échouer!", Toast.LENGTH_LONG).show();
+                            }
+                        }
+                    });
                 }
                 else{
-                    Toast.makeText(getApplicationContext(), "Pas de points!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Ceci n'est pas l'objectif! Veuillez reassayer!", Toast.LENGTH_LONG).show();
                 }
-                Toast.makeText(getApplicationContext(), "Your Location is - \nLat: " + latitude + "\nLong: " + longitude, Toast.LENGTH_LONG).show();
+                //Toast.makeText(getApplicationContext(), "Your Location is - \nLat: " + latitude + "\nLong: " + longitude, Toast.LENGTH_LONG).show();
             } else {
                 gps.showSettingsAlert();
             }

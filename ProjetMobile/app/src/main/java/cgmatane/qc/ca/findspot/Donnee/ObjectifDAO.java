@@ -35,9 +35,11 @@ public class ObjectifDAO {
         }
         return instance;
     }
+
     public List<Objectif> getListeObjectif(){
         return listeObjectif;
     }
+
     private void listerObjectif() {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
@@ -59,6 +61,5 @@ public class ObjectifDAO {
 
                     }
                 });
-
     }
 }

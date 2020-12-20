@@ -5,12 +5,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-import cgmatane.qc.ca.findspot.Utilisateur;
+import cgmatane.qc.ca.findspot.Modele.Utilisateur;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -23,7 +22,7 @@ public class VueInscription extends AppCompatActivity {
     private EditText champNom, champCourriel, champDeMotDePasse;
 
     private FirebaseAuth authentification;
-    private Utilisateur utilisateur = new Utilisateur(null,null);
+    private Utilisateur utilisateur = new Utilisateur(null,null, null);
 
     private Button validerInscription;
 
@@ -68,7 +67,7 @@ public class VueInscription extends AppCompatActivity {
         }
         if(email.isEmpty())
         {
-            champCourriel.setError("Un Email est requis!");
+            champCourriel.setError("Un Addresse courriel est requis!");
             champCourriel.requestFocus();
             return;
         }
@@ -84,7 +83,7 @@ public class VueInscription extends AppCompatActivity {
             return;
         }*/
         if(motDePasse.length() < 6){
-            champDeMotDePasse.setError("Au minimum contenir 6 caracteres!");
+            champDeMotDePasse.setError("Doit contenir au minimum 6 caractères!");
             champDeMotDePasse.requestFocus();
             return;
         }
@@ -96,7 +95,7 @@ public class VueInscription extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
                             //Utilisateur utilisateur = new Utilisateur(nom, email);
-                            utilisateur = new Utilisateur(nom, email);
+                            utilisateur = new Utilisateur(nom, email, "0");
 
                             FirebaseDatabase.getInstance().getReference("Utilisateurs")
                                     .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
@@ -104,16 +103,16 @@ public class VueInscription extends AppCompatActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if(task.isSuccessful()){
-                                        Toast.makeText(VueInscription.this, "Utilisateur a bien ete creer!", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(VueInscription.this, "Utilisateur créer!", Toast.LENGTH_LONG).show();
                                         startActivity(new Intent(VueInscription.this, VueConnexion.class));
                                     }else {
-                                        Toast.makeText(VueInscription.this, "Inscription echouer! Essayez de nouveau!", Toast.LENGTH_LONG).show();
+                                        Toast.makeText(VueInscription.this, "Inscription echouer! Veuillez essayez de nouveau!", Toast.LENGTH_LONG).show();
                                     }
                                 }
                             });
 
                         }else {
-                            Toast.makeText(VueInscription.this, "Inscription echouer! Essayez de nouveau!", Toast.LENGTH_LONG).show();
+                            Toast.makeText(VueInscription.this, "Inscription echouer! Veuillez essayez de nouveau!", Toast.LENGTH_LONG).show();
                         }
                     }
                 });

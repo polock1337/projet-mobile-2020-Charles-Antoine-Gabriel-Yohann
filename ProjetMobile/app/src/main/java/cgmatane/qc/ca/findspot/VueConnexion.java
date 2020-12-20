@@ -86,13 +86,13 @@ public class VueConnexion extends AppCompatActivity
         }
         if(motDePasse.isEmpty())
         {
-            champDeMotDePasse.setError("Entree un mot de passe!");
+            champDeMotDePasse.setError("Veuillez entrer un mot de passe!");
             champDeMotDePasse.requestFocus();
             return;
         }
         if(motDePasse.length() < 6)
         {
-            champDeMotDePasse.setError("Le mot de passe doit comporter au minimum 6 caracteres");
+            champDeMotDePasse.setError("Le mot de passe doit comporter au minimum 6 caractères");
             champDeMotDePasse.requestFocus();
             return;
         }
@@ -107,12 +107,11 @@ public class VueConnexion extends AppCompatActivity
                         startActivity(new Intent(VueConnexion.this, VueAccueil.class));
                     }else{
                         user.sendEmailVerification();
-                        Toast.makeText(VueConnexion.this,"Verifier vos courriel!", Toast.LENGTH_LONG).show();
+                        Toast.makeText(VueConnexion.this,"Veuillez verifier vos courriel!", Toast.LENGTH_LONG).show();
                     }
 
-
                 }else{
-                    Toast.makeText(VueConnexion.this,"Erreurs dans le login! Ressayer!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(VueConnexion.this,"Erreurs dans le login! Veuillez ressayer!", Toast.LENGTH_LONG).show();
                 }
             }
         });

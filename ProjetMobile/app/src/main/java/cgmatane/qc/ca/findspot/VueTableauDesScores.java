@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
@@ -12,6 +13,9 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseError;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -19,12 +23,17 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-import cgmatane.qc.ca.findspot.R;
+import cgmatane.qc.ca.findspot.Modele.Objectif;
+import cgmatane.qc.ca.findspot.Modele.Utilisateur;
+import io.grpc.okhttp.internal.Util;
 
 public class VueTableauDesScores extends AppCompatActivity
 {
@@ -45,13 +54,15 @@ public class VueTableauDesScores extends AppCompatActivity
 
         vueListeTableauDesScores = (ListView)findViewById(R.id.vueListeTableauDesScores);
 
-        listeTableauDesScores = preparerTableauDesScores();
+        listeTableauDesScores = new ArrayList<HashMap<String, String>>();
 
         user = FirebaseAuth.getInstance().getCurrentUser();
         reference = FirebaseDatabase.getInstance().getReference("Utilisateurs");
         nomID = user.getUid();
 
         final TextView nomTextView = (TextView) findViewById(R.id.nomUtilisateur);
+
+        final TextView scoreTextView = (TextView) findViewById(R.id.scoreUtilisateur);
 
         reference.child(nomID).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -60,8 +71,10 @@ public class VueTableauDesScores extends AppCompatActivity
 
                 if(profilUtilisateur != null){
                     String nom = profilUtilisateur.nom;
+                    String score = profilUtilisateur.score;
 
                     nomTextView.setText(nom);
+                    scoreTextView.setText("Score : " + score);
                 }
             }
 
@@ -71,15 +84,7 @@ public class VueTableauDesScores extends AppCompatActivity
             }
         });
 
-        SimpleAdapter adapter = new SimpleAdapter(
-                this,
-                listeTableauDesScores,
-                android.R.layout.two_line_list_item,
-                new String[] {"nomJoueur", "joueurScore"},
-                new int[] {android.R.id.text1, android.R.id.text2}
-        );
-
-        vueListeTableauDesScores.setAdapter(adapter);
+        preparerTableauDesScores();
 
         Button retourVueListeObjectif = (Button)findViewById(R.id.retourVueListeObjectif);
 
@@ -91,27 +96,14 @@ public class VueTableauDesScores extends AppCompatActivity
                     @Override
                     public void onClick(View view)
                     {
-                        // TODO : coder !
-
-                       /* Toast message = Toast.makeText(
-
-                                getApplicationContext(),
-                                "vue Ecran Accueil",
-                                Toast.LENGTH_LONG);
-
-                        message.show();*/
-
                         naviguerRetourListeObjectif();
-                        //startActivityForResult(intentionNaviguerProfit, ACTIVITE_PROFIT);
                     }
                 }
-
-
         );
 
 
     }
-
+/*
     public List<HashMap<String, String>> preparerTableauDesScores()
     {
         List<HashMap<String, String>> listeTableauDesScores = new ArrayList<HashMap<String, String>>();
@@ -124,6 +116,49 @@ public class VueTableauDesScores extends AppCompatActivity
         listeTableauDesScores.add(tableauScores);
 
         return listeTableauDesScores;
+    }*/
+
+    public void preparerTableauDesScores()
+    {
+        //System.out.println("Je suis dans preparerTableauDesScores");
+
+        reference = FirebaseDatabase.getInstance().getReference("Utilisateurs");
+
+        reference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                //Log.e("Count " ,"" + snapshot.getChildrenCount());
+                for (DataSnapshot postSnapshot: snapshot.getChildren()) {
+                    String nom = postSnapshot.child("nom").getValue(String.class);
+                    String email = postSnapshot.child("email").getValue(String.class);
+                    String score = postSnapshot.child("score").getValue(String.class);
+
+                    Utilisateur user = new Utilisateur(nom, email, score);
+
+                    if(user != null) {
+                        listeTableauDesScores.add(user.obtenirUtilisateurPourAfficher());
+                        afficherScore();
+                    }
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.e("The read failed: " , error.getMessage());
+            }
+        });
+    }
+
+    private void afficherScore()
+    {
+        SimpleAdapter adapter = new SimpleAdapter(
+                this,
+                listeTableauDesScores,
+                android.R.layout.two_line_list_item,
+                new String[] {"nom", "score"},
+                new int[] {android.R.id.text1, android.R.id.text2}
+        );
+
+        vueListeTableauDesScores.setAdapter(adapter);
     }
 
     public void naviguerRetourListeObjectif()
