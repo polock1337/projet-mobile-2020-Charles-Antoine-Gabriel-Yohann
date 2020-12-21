@@ -34,6 +34,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.google.protobuf.DescriptorProtos;
 
 import java.io.File;
 import java.io.IOException;
@@ -171,7 +172,7 @@ public class VueObjectif extends AppCompatActivity {
             value = b.getString("id");
         id = value;
 
-        for(Objectif objectif:ObjectifDAO.getInstance().getListeObjectif())
+        for(Objectif objectif:ObjectifDAO.getInstance(nomID).getListeObjectif())
         {
             if(objectif.getId().equals(id))
             {
@@ -248,17 +249,15 @@ public class VueObjectif extends AppCompatActivity {
 
             // Check if GPS enabled
             if(gps.canGetLocation()) {
-
-                double latitude = gps.getLatitude();
-                double longitude = gps.getLongitude();
-
                 double lat2 = gps.getLatitude();
                 double lng2 = gps.getLongitude();
                 double lat1 =  objectif.getLocalisation().getLatitude();
                 double lng1 = objectif.getLocalisation().getLongitude();
                 // lat1 and lng1 are the values of a previously stored location
-                if (distance(lat1, lng1, lat2, lng2) < 0.0124274) { // 0.0124274 : Si la distance est égal ou moins de 20 mètre
+                if (distance(lat1, lng1, lat2, lng2) < 0.0124274) { // 0.0124274 : Si la distance est égal ou moins de 50 mètre
                     Toast.makeText(getApplicationContext(), "Bravo vous avez trouver l'objectif!", Toast.LENGTH_LONG).show();
+
+                    ObjectifDAO.getInstance(nomID).ajouterObjectifFait(objectif.getId(),nomID);
 
                     String newScore = profilUtilisateur.score;
 
@@ -282,8 +281,8 @@ public class VueObjectif extends AppCompatActivity {
                 }
                 else{
                     Toast.makeText(getApplicationContext(), "Ceci n'est pas l'objectif! Veuillez reassayer!", Toast.LENGTH_LONG).show();
+                    System.out.println("lat joueur : "+lat2+ "lng joueur : "+lng2);
                 }
-                //Toast.makeText(getApplicationContext(), "Your Location is - \nLat: " + latitude + "\nLong: " + longitude, Toast.LENGTH_LONG).show();
             } else {
                 gps.showSettingsAlert();
             }

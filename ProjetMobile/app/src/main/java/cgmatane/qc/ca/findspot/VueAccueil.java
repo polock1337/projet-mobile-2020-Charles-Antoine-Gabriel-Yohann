@@ -54,7 +54,11 @@ public class VueAccueil extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
-        objectifDAO = ObjectifDAO.getInstance();
+        user = FirebaseAuth.getInstance().getCurrentUser();
+        reference = FirebaseDatabase.getInstance().getReference("Utilisateurs");
+        nomID = user.getUid();
+
+        objectifDAO = ObjectifDAO.getInstance(nomID);
         super.onCreate(savedInstanceState);
         listeObjectif = new ArrayList<HashMap<String, String>>();
         setContentView(R.layout.activity_vue_accueil);
@@ -62,9 +66,7 @@ public class VueAccueil extends AppCompatActivity
         System.out.println("vueAccueilListeObjectif !!!! : " + vueAccueilListeObjectif);
         preparerListeObjectif();
 
-        user = FirebaseAuth.getInstance().getCurrentUser();
-        reference = FirebaseDatabase.getInstance().getReference("Utilisateurs");
-        nomID = user.getUid();
+
 
         final TextView nomTextView = (TextView) findViewById(R.id.nomUtilisateur);
 
@@ -133,23 +135,34 @@ public class VueAccueil extends AppCompatActivity
 
     public void preparerListeObjectif()
     {
-        //System.out.println("Je suis dans preparerListeObjectif");
         Task<QuerySnapshot> db = FirebaseFirestore.getInstance().collection("objectif")
-            .get();
+                .get();
         db.addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-        @Override
-        public void onComplete(@NonNull Task<QuerySnapshot> task) {
-            if (task.isSuccessful()) {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                listerOjectifNonFait();
+            }
+        });
+
+    }
+    private void listerOjectifNonFait()
+    {
+        Task<QuerySnapshot> db = FirebaseFirestore.getInstance().collection("objectifFait")
+                .get();
+        db.addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
                     for (Objectif objectif : objectifDAO.listeObjectif) {
-                        listeObjectif.add(objectif.obtenirObjectifPourAfficher());
-                        findViewById(R.id.loadingPanel).setVisibility(View.GONE);
-                        afficherObjectif();
+                        if(ObjectifDAO.getInstance(nomID).objectifEstNonFait(objectif))
+                            listeObjectif.add(objectif.obtenirObjectifPourAfficher());
                     }
+                    findViewById(R.id.loadingPanel).setVisibility(View.GONE);
+                    afficherObjectif();
                 }
             }
         });
     }
-
     private void afficherObjectif()
     {
         SimpleAdapter adapter = new SimpleAdapter(

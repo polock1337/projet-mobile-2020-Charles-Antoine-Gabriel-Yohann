@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.UserHandle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -13,23 +14,26 @@ import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.FirebaseError;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+
 
 import cgmatane.qc.ca.findspot.Modele.Objectif;
 import cgmatane.qc.ca.findspot.Modele.Utilisateur;
@@ -39,7 +43,6 @@ public class VueTableauDesScores extends AppCompatActivity
 {
     protected ListView vueListeTableauDesScores;
     protected List<HashMap<String, String>> listeTableauDesScores;
-
     protected Intent intentionNaviguerVueAccueil;
 
     private FirebaseUser user;
@@ -55,6 +58,7 @@ public class VueTableauDesScores extends AppCompatActivity
         vueListeTableauDesScores = (ListView)findViewById(R.id.vueListeTableauDesScores);
 
         listeTableauDesScores = new ArrayList<HashMap<String, String>>();
+
 
         user = FirebaseAuth.getInstance().getCurrentUser();
         reference = FirebaseDatabase.getInstance().getReference("Utilisateurs");
@@ -103,27 +107,12 @@ public class VueTableauDesScores extends AppCompatActivity
 
 
     }
-/*
-    public List<HashMap<String, String>> preparerTableauDesScores()
-    {
-        List<HashMap<String, String>> listeTableauDesScores = new ArrayList<HashMap<String, String>>();
-
-        HashMap<String, String> tableauScores;
-
-        tableauScores = new HashMap<String, String>();
-        tableauScores.put("nomJoueur", "Paul");
-        tableauScores.put("joueurScore", "Score 2598");
-        listeTableauDesScores.add(tableauScores);
-
-        return listeTableauDesScores;
-    }*/
 
     public void preparerTableauDesScores()
     {
         //System.out.println("Je suis dans preparerTableauDesScores");
 
         reference = FirebaseDatabase.getInstance().getReference("Utilisateurs");
-
         reference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
@@ -137,8 +126,9 @@ public class VueTableauDesScores extends AppCompatActivity
 
                     if(user != null) {
                         listeTableauDesScores.add(user.obtenirUtilisateurPourAfficher());
-                        afficherScore();
                     }
+                    creerListeTableauDesScores();
+                    afficherScore();
                 }
             }
             @Override
@@ -147,9 +137,25 @@ public class VueTableauDesScores extends AppCompatActivity
             }
         });
     }
+    private void creerListeTableauDesScores()
+    {
 
+        Comparator<HashMap<String, String>> comparator = new Comparator<HashMap<String,String>>() {
+
+            @Override
+            public int compare(HashMap<String, String> o1, HashMap<String, String> o2) {
+                Integer score1 = Integer.parseInt(o1.get("score"));
+                Integer score2 = Integer.parseInt(o2.get("score"));
+
+                return score2.compareTo(score1);
+            }
+        };
+
+        Collections.sort(listeTableauDesScores, comparator);
+    }
     private void afficherScore()
     {
+
         SimpleAdapter adapter = new SimpleAdapter(
                 this,
                 listeTableauDesScores,
@@ -165,4 +171,5 @@ public class VueTableauDesScores extends AppCompatActivity
     {
         this.finish();
     }
+
 }
