@@ -104,6 +104,7 @@ public class VueAccueil extends AppCompatActivity
                     {
 
                         startActivity(intentionNaviguerTableauScores);
+
                     }
                 }
         );
@@ -128,6 +129,7 @@ public class VueAccueil extends AppCompatActivity
                         b.putString("id",objectif.get("id"));
                         intentionNaviguerObjectif.putExtras(b);
                         startActivity(intentionNaviguerObjectif);
+                        finish();
 
                     }}
         );
@@ -159,6 +161,7 @@ public class VueAccueil extends AppCompatActivity
                     }
                     findViewById(R.id.loadingPanel).setVisibility(View.GONE);
                     afficherObjectif();
+
                 }
             }
         });

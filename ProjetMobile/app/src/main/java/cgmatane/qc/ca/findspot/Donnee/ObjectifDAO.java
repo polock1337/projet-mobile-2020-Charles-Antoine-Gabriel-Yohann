@@ -23,10 +23,7 @@ public class ObjectifDAO {
     public List<String> listeObjectifFait;
     private static ObjectifDAO instance = null;
     private ObjectifDAO(String idUtilisateur){
-        listeObjectif = new ArrayList<Objectif>();
-        listeObjectifFait = new ArrayList<String>();
-        listerObjectifFait(idUtilisateur);
-        listerObjectif();
+        resetObjectif(idUtilisateur);
     }
 
     public static ObjectifDAO getInstance(String idUtilisateur ){
@@ -35,7 +32,13 @@ public class ObjectifDAO {
         }
         return instance;
     }
-
+    public void resetObjectif(String idUtilisateur)
+    {
+        listeObjectif = new ArrayList<Objectif>();
+        listeObjectifFait = new ArrayList<String>();
+        listerObjectifFait(idUtilisateur);
+        listerObjectif();
+    }
     public List<Objectif> getListeObjectif(){
         return listeObjectif;
     }
@@ -57,7 +60,7 @@ public class ObjectifDAO {
             return true;
 
     }
-    private void listerObjectif() {
+    public void listerObjectif() {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
         db.collection("objectif")
@@ -77,7 +80,7 @@ public class ObjectifDAO {
                     }
                 });
     }
-    private void listerObjectifFait(String idUtilisateur){
+    public void listerObjectifFait(String idUtilisateur){
         FirebaseFirestore db = FirebaseFirestore.getInstance();
 
         db.collection("objectifFait").whereEqualTo("idUtilisateur",idUtilisateur)

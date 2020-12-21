@@ -212,6 +212,7 @@ public class VueObjectif extends AppCompatActivity {
     }
 
     public void naviguerRetourListeObjectif() {
+        startActivity(new Intent(this, VueAccueil.class));
         this.finish();
     }
 
@@ -258,6 +259,7 @@ public class VueObjectif extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Bravo vous avez trouver l'objectif!", Toast.LENGTH_LONG).show();
 
                     ObjectifDAO.getInstance(nomID).ajouterObjectifFait(objectif.getId(),nomID);
+                    ObjectifDAO.getInstance(nomID).resetObjectif(nomID);
 
                     String newScore = profilUtilisateur.score;
 
