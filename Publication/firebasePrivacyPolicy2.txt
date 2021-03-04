@@ -1,0 +1,272 @@
+
+Firebase
+
+Français
+Connexion
+Soutien
+
+Firebase
+Google is committed to advancing racial equity for Black communities. See how.
+
+Cette page a été traduite par l'API Cloud Translation.
+Switch to English
+Firebase
+Soutien
+Envoyer des commentaires
+Confidentialité et sécurité dans Firebase
+
+
+Cette page présente les principales informations de sécurité et de confidentialité de Firebase. Que vous souhaitiez lancer un nouveau projet avec Firebase ou que vous souhaitiez savoir comment Firebase fonctionne avec votre projet existant, lisez la suite pour voir comment Firebase peut vous protéger, vous et vos utilisateurs.
+
+Dernière mise à jour: 27 janvier 2021
+
+Protection des données
+Prise en charge de Firebase pour GDPR et CCPA
+Le 25 mai 2018, le règlement général sur la protection des données de l'UE (RGPD) a remplacé la directive européenne de 1995 sur la protection des données. Le 1er janvier 2020, la California Consumer Privacy Act (CCPA) est entrée en vigueur. Google s'engage à aider ses clients à réussir dans le cadre de ces règles de confidentialité, qu'il s'agisse de grands éditeurs de logiciels ou de développeurs indépendants.
+
+Le RGPD impose des obligations aux responsables du traitement et aux sous-traitants, et le CCPA impose des obligations aux entreprises et à leurs prestataires de services. Les clients Firebase agissent généralement en tant que «contrôleur de données» (RGPD) ou «entreprise» (CCPA) pour toutes les données personnelles ou informations sur leurs utilisateurs finaux qu'ils fournissent à Google dans le cadre de leur utilisation de Firebase, et Google fonctionne généralement comme un processeur de données "(GDPR) ou" fournisseur de services "(CCPA).
+
+Cela signifie que les données sont sous le contrôle du client. Les clients sont responsables d'obligations telles que le respect des droits d'une personne en ce qui concerne ses données ou informations personnelles.
+
+Conditions relatives au traitement des données et à la sécurité de Firebase
+Lorsque les clients utilisent Firebase, Google est généralement un processeur de données sous GDPR et traite les données personnelles en leur nom. De même, lorsque les clients utilisent Firebase, Google opère généralement en tant que fournisseur de services sous le CCPA traitant les informations personnelles en leur nom. Les conditions de Firebase incluent les conditions de traitement des données et de sécurité détaillant ces responsabilités.
+
+Certains services Firebase régis par les conditions d'utilisation de Google Cloud Platform (GCP) sont déjà couverts par les conditions de traitement des données associées, les conditions de traitement des données et de sécurité GCP . Une liste complète des services Firebase actuellement régis par les conditions d'utilisation de GCP est disponible dans les conditions d'utilisation des services Firebase .
+
+Crashlytics et App Distribution sont régis par les Conditions d'utilisation de Firebase Crashlytics et Firebase App Distribution , et sont couverts par ces conditions de traitement de données associées .
+
+Google Analytics pour Firebase et Google Analytics sont régis respectivement par les Conditions d'utilisation de Google Analytics pour Firebase et les Conditions d'utilisation de Google Analytics , ainsi que par les Conditions de traitement des données de Google Ads . Pour plus d'informations, reportez-vous à Protection de vos données .
+
+Firebase est certifié selon les principales normes de confidentialité et de sécurité
+Conformité ISO et SOC
+Tous les services Firebase (à part App Distribution et Crashlytics) ont réussi le processus d'évaluation ISO 27001 et SOC 1 , SOC 2 et SOC 3 , et certains ont également terminé le processus de certification ISO 27017 et ISO 27018 :
+
+ISO 27001	ISO 27017	ISO 27018	SOC 1	SOC 2	SOC 3
+Authentification Firebase	check	check	check	check	check	check
+Base de données en temps réel Firebase	check			check	check	check
+Cloud Firestore	check	check	check	check	check	check
+Cloud Functions pour Firebase	check	check	check	check	check	check
+Cloud Storage pour Firebase	check	check	check	check	check	check
+Configuration à distance Firebase	check			check	check	check
+Distribution d'applications Firebase						
+Firebase Crashlytics					check	
+Firebase ML	check			check	check	check
+Google Analytics pour Firebase	check					
+Hébergement Firebase	check			check	check	check
+Laboratoire de test Firebase	check	check	check	check	check	check
+Liens dynamiques Firebase	check			check	check	check
+Messagerie Firebase Cloud	check			check	check	check
+Messagerie intégrée à l'application Firebase	check			check	check	check
+Plateforme Firebase	check			check	check	check
+Prédictions Firebase	check			check	check	check
+Surveillance des performances de Firebase	check			check	check	check
+Test Firebase A / B	check			check	check	check
+Transferts internationaux de données
+Les cadres du bouclier de protection des données fournissaient un mécanisme pour se conformer aux exigences de protection des données lors du transfert de données personnelles dans l'EEE, au Royaume-Uni ou en Suisse vers les États-Unis et au-delà. Alors que le bouclier de protection des données Suisse-États-Unis reste actuellement valide, à la lumière de la récente décision de la Cour de justice de l'Union européenne sur les transferts de données, annulant le bouclier de protection des données UE-États-Unis, Firebase a opté pour des clauses contractuelles standard pour les transferts de données pertinents, qui, conformément à la décision, peut continuer à être un mécanisme juridique valide pour transférer des données dans le cadre du RGPD.
+
+Nous nous engageons à avoir une base légale pour les transferts de données conformément aux lois applicables en matière de protection des données.
+
+Informations sur le traitement des données 
+Exemples de données personnelles des utilisateurs finaux traitées par Firebase
+Certains services Firebase traitent les données personnelles de vos utilisateurs finaux pour fournir leur service. Le tableau ci-dessous présente des exemples de la manière dont divers services Firebase utilisent et traitent les données personnelles des utilisateurs finaux. En outre, de nombreux services Firebase offrent la possibilité de demander la suppression de données spécifiques ou de contrôler la manière dont les données sont traitées.
+
+Données personnelles	Comment les données aident à fournir le service
+Authentification Firebase	
+Mots de passe
+Adresses mail
+Les numéros de téléphone
+Agents utilisateurs
+Adresses IP
+Comment cela aide-t-il? L' authentification Firebase utilise les données pour activer l'authentification de l'utilisateur final et faciliter la gestion des comptes de l'utilisateur final. Il utilise également des chaînes d'utilisateur-agent et des adresses IP pour fournir une sécurité supplémentaire et éviter les abus lors de l'inscription et de l'authentification.
+
+Conservation: l' authentification Firebase conserve les adresses IP enregistrées pendant quelques semaines. Il conserve les autres informations d'authentification jusqu'à ce que le client Firebase lance la suppression de l'utilisateur associé, après quoi les données sont supprimées des systèmes actifs et de sauvegarde dans les 180 jours.
+
+Base de données en temps réel Firebase	
+Adresses IP
+Agents utilisateurs
+Comment cela aide: Realtime Database utilise des adresses IP et des agents utilisateurs pour activer l' outil de profilage , qui aide les clients Firebase à comprendre les tendances d'utilisation et les pannes de la plate-forme.
+
+Conservation: la base de données en temps réel conserve les adresses IP et les informations sur les agents utilisateurs pendant quelques jours, à moins qu'un client ne choisisse de les conserver plus longtemps.
+
+Cloud Functions pour Firebase	
+Adresses IP
+Comment cela aide: Cloud Functions utilise des adresses IP pour exécuter des fonctions de gestion des événements et des fonctions HTTP basées sur les actions de l'utilisateur final.
+
+Rétention: les fonctions Cloud n'enregistrent que temporairement les adresses IP pour fournir le service.
+
+Configuration à distance Firebase	
+ID d'installation Firebase
+Comment cela aide: Remote Config utilise les ID d'installation Firebase pour sélectionner les valeurs de configuration à renvoyer aux appareils des utilisateurs finaux.
+
+Conservation: Firebase conserve les ID d'installation Firebase jusqu'à ce que le client Firebase effectue un appel API pour supprimer l'ID. Après l'appel, les données sont supprimées des systèmes en direct et de sauvegarde dans les 180 jours.
+
+Distribution d'applications Firebase	
+Noms des utilisateurs
+Adresses mail
+UDID iOS
+Identifiants Android sécurisés
+Comment cela aide: Firebase App Distribution utilise les données pour distribuer les builds d'applications aux testeurs, surveiller l'activité des testeurs et associer les données aux appareils testeurs.
+
+Conservation: Firebase App Distribution conserve les informations utilisateur jusqu'à ce que le client Firebase demande sa suppression, après quoi les données sont supprimées des systèmes en direct et de sauvegarde dans les 180 jours.
+
+Firebase Crashlytics	
+UUID d'installation de Crashlytics
+Traces de crash
+Données formatées Breakpad minidump
+(NDK plante uniquement)
+Comment cela aide: Firebase Crashlytics utilise des traces de pile de crash pour associer les plantages à un projet, envoyer des alertes par e-mail aux membres du projet et les afficher dans la console Firebase, et aider les clients Firebase à déboguer les plantages. Il utilise les UUID d'installation de Crashlytics pour mesurer le nombre d'utilisateurs touchés par un crash et des données minidump pour traiter les plantages NDK. Les données du minidump sont stockées pendant le traitement de la session de blocage, puis supprimées. Reportez-vous aux Exemples d'informations stockées sur les périphériques pour plus de détails sur les types d'informations utilisateur collectées.
+
+Conservation: Firebase Crashlytics conserve les traces de la pile de crash, les données extraites du minidump et les identifiants associés (y compris les UUID d'installation Crashlytics) pendant 90 jours.
+
+Remarque: Firebase Crashlytics ne stocke les données de minidump que temporairement afin de traiter les plantages NDK.
+Firebase ML	
+Images téléchargées
+Jetons d'authentification d'installation Firebase
+Comment cela aide: les API basées sur le cloud stockent temporairement les images téléchargées, pour traiter et vous renvoyer l'analyse. Les images stockées sont généralement supprimées en quelques heures. Consultez la FAQ sur l'utilisation des données Cloud Vision pour plus d'informations.
+
+Les jetons d'authentification d'installation de Firebase sont utilisés par Firebase ML pour l'authentification des appareils lors de l'interaction avec des instances d'application, par exemple pour distribuer des modèles de développeur aux instances d'application.
+
+Rétention: les jetons d'authentification d'installation Firebase restent valides jusqu'à leur date d'expiration. La durée de vie du jeton par défaut est d'une semaine.
+
+Google Analytics pour Firebase	
+Identifiants d'annonce pour mobile
+IDFV / ID Android
+ID d'installation Firebase
+ID d'instance d'application Analytics
+Comment cela aide: Google Analytics utilise les données pour fournir des informations d'analyse et d'attribution. Les informations précises collectées peuvent varier en fonction de l'appareil et de l'environnement. Pour plus d'informations, voir Collecte de données .
+
+Conservation: Google Analytics conserve certaines données associées aux identifiants publicitaires (par exemple, l'identifiant Apple pour les annonceurs et l'identifiant pour les fournisseurs, l'identifiant publicitaire d'Android) pendant 60 jours, et conserve les rapports globaux sans expiration automatique. La conservation des données au niveau de l'utilisateur, y compris les conversions, est fixée à 14 mois maximum. Pour toutes les autres données d'événement, vous pouvez définir la rétention dans vos paramètres Analytics sur 2 mois ou 14 mois. En savoir plus .
+
+Hébergement Firebase	
+Adresses IP
+Comment cela aide: l' hébergement utilise les adresses IP des demandes entrantes pour détecter les abus et fournir aux clients une analyse détaillée des données d'utilisation.
+
+Rétention: l' hébergement conserve les données IP pendant quelques mois.
+
+Liens dynamiques Firebase	
+Spécifications de l'appareil (iOS)
+Adresses IP (iOS)
+Comment cela aide: Dynamic Links utilise les spécifications de l'appareil et les adresses IP sur iOS pour ouvrir les applications nouvellement installées vers une page ou un contexte spécifique.
+
+Rétention: les liens dynamiques ne stockent que temporairement les spécifications des appareils et les adresses IP pour fournir le service.
+
+Messagerie Firebase Cloud	
+ID d'installation Firebase
+Comment cela aide: Firebase Cloud Messaging utilise les ID d'installation Firebase pour déterminer les appareils auxquels envoyer les messages.
+
+Conservation: Firebase conserve les ID d'installation Firebase jusqu'à ce que le client Firebase effectue un appel API pour supprimer l'ID. Après l'appel, les données sont supprimées des systèmes en direct et de sauvegarde dans les 180 jours.
+
+Prédictions Firebase	
+ID d'installation Firebase
+Comment cela aide: Predictions utilise les ID d'installation Firebase pour associer des installations Firebase à un projet et pour récupérer une série chronologique d'événements. Il utilise ces événements pour permettre la prédiction de la probabilité d'occurrence d'événements spécifiés par le client, ainsi que des prévisions de dépenses et de désabonnement par défaut.
+
+Conservation: les prévisions stockent les événements associés à l'installation pendant 60 jours et les prédictions basées sur ces événements pendant quelques semaines. Firebase conserve les ID d'installation Firebase jusqu'à ce que le client Firebase effectue un appel API pour supprimer l'ID. Après l'appel, les données sont supprimées des systèmes en direct et de sauvegarde dans les 180 jours.
+
+Surveillance des performances de Firebase	
+ID d'installation Firebase
+Adresses IP
+Comment cela aide: La surveillance des performances utilise les ID d'installation Firebase pour calculer le nombre d'installations Firebase uniques qui accèdent aux ressources réseau, afin de garantir que les modèles d'accès sont suffisamment anonymes. Il utilise également les ID d'installation Firebase avec Firebase Remote Config pour gérer le taux de rapports d'événements de performances. En outre, il utilise des adresses IP pour mapper les événements de performance aux pays dont ils proviennent. Pour plus d'informations, voir Collecte de données .
+
+Conservation: la surveillance des performances conserve l'installation et les événements associés à l'adresse IP pendant 30 jours et les données de performance anonymisées pendant 90 jours.
+
+ Exemples d'informations stockées sur les appareils collectées par Crashlytics
+
+ Exemples d'informations collectées par Performance Monitoring
+
+Remarque: pour plus d'informations sur la suppression des données associées aux installations, consultez Supprimer une installation Firebase .
+Guides pour activer l'opt-in pour le traitement des données personnelles de l'utilisateur final
+Les services du tableau ci-dessus ont besoin d'une certaine quantité de données personnelles de l'utilisateur final pour fonctionner. Par conséquent, il n'est pas possible de désactiver entièrement la collecte de données lors de l'utilisation de ces services.
+
+Si vous êtes un client qui souhaite offrir aux utilisateurs la possibilité de s'inscrire à un service et à la collecte de données qui l'accompagne, dans la plupart des cas, il suffit d'ajouter une boîte de dialogue ou une bascule de paramètres avant d'utiliser le service.
+
+Cependant, certains services démarrent automatiquement lorsqu'ils sont inclus dans une application. Pour donner aux utilisateurs la possibilité de s'inscrire avant d'utiliser ces services, vous pouvez choisir de désactiver l'initialisation automatique pour chaque service et de les initialiser manuellement au moment de l'exécution. Pour savoir comment, lisez les guides ci-dessous:
+
+Cloud Messaging: Empêcher l'initialisation automatique (Android) ou Empêcher l'initialisation automatique (iOS)
+Crashlytics: Activer le rapport d'activation (iOS) ou Activer le rapport d'activation (Android)
+Surveillance des performances: activez la surveillance de l' opt-in
+Analytics: configurer la collecte de données Analytics
+Lieux de stockage et de traitement des données
+À moins qu'un service ou une fonctionnalité ne propose la sélection de l'emplacement des données, Firebase peut traiter et stocker vos données partout où Google ou ses agents disposent d'installations. Les emplacements potentiels des installations varient selon le service.
+
+Services réservés aux États-Unis
+Quelques services Firebase ne sont exécutés qu'à partir de centres de données américains. En conséquence, ces services traitent les données exclusivement aux États-Unis.
+
+Hébergement FirebaseAuthentification Firebase
+Remarque: Firebase Hosting met en cache les données de réponse dans des serveurs de diffusion de contenu distribués à l'échelle mondiale pour fournir le service, mais traite toutes les demandes aux États-Unis.
+Services globaux
+La majorité des services Firebase fonctionnent sur l'infrastructure globale de Google. Ils peuvent traiter des données à n'importe quel emplacement de Google Cloud Platform ou emplacement de centre de données Google . Pour certains services, vous pouvez effectuer une sélection d'emplacement de données spécifique qui limite le traitement à cet emplacement.
+
+Cloud Storage pour FirebaseCloud FirestoreCloud Functions pour FirebaseSurveillance des performances de FirebaseLiens dynamiques FirebaseConfiguration à distance FirebaseMessagerie Firebase CloudPrédictions FirebaseGoogle AnalyticsFirebase MLLaboratoire de test Firebase
+Information de sécurité
+Cryptage des données
+Les services Firebase chiffrent les données en transit à l'aide de HTTPS et isolent logiquement les données des clients.
+
+De plus, plusieurs services Firebase chiffrent également leurs données au repos:
+
+Cloud FirestoreCloud Functions pour FirebaseCloud Storage pour FirebaseAuthentification FirebaseMessagerie Firebase CloudBase de données en temps réel FirebaseLaboratoire de test Firebase
+Pratiques de sécurité
+Pour protéger les données personnelles, Firebase utilise des mesures de sécurité étendues pour minimiser l'accès:
+
+Firebase limite l'accès à certains employés qui ont un objectif commercial pour accéder aux données personnelles.
+Firebase enregistre l'accès des employés aux systèmes contenant des données personnelles.
+Firebase autorise uniquement l'accès aux données personnelles aux employés qui se connectent avec Google Sign-In et l' authentification à 2 facteurs .
+Données du service Firebase
+Les données de service Firebase sont des informations personnelles que Google collecte et génère lors de la fourniture et de l'administration des services Firebase * , à l'exclusion des données client ** telles que définies dans nos contrats clients couvrant les services Firebase et les données de service Google Cloud . Des exemples de données de service Firebase incluent des informations sur l'utilisation du service, des identifiants de ressources tels que les identifiants d'application et les identifiants de nom / bundle de package, des détails techniques et opérationnels d'utilisation tels que les adresses IP, et les communications directes avec les développeurs à partir des commentaires et des conversations liées au support.
+
+* Les services couverts incluent Firebase A / B Testing, Firebase App Distribution, Firebase Cloud Messaging, Firebase Crashlytics, Firebase Dynamic Links, Firebase Hosting, Firebase In-App Messaging, Firebase ML, Firebase Performance Monitoring, Firebase Predictions, Firebase Realtime Database et Firebase Remote Config.
+
+** Pour plus d'informations sur la manière dont nous traitons les données client, consultez nos Conditions relatives au traitement des données et à la sécurité Firebase et les Conditions relatives au traitement des données et à la sécurité de Crashlytics et de distribution d'applications .
+
+Exemples de traitement des données de service Firebase par Firebase
+Google utilise les données de service Firebase conformément à notre politique de confidentialité et aux conditions applicables. Les données de service Firebase sont utilisées, par exemple, pour:
+
+Fournissez les services Firebase que vous demandez
+Faire des recommandations pour optimiser l'utilisation des services Firebase
+Maintenir et améliorer les services Firebase
+Fournir et améliorer les autres services que vous demandez
+Comprenez votre utilisation de Firebase et d'autres services Google
+Fournir un meilleur soutien et communiquer avec vous
+Protégez-vous, nos utilisateurs, le public et Google
+Respectez les obligations légales
+Utilisation des données du service Firebase par des services Google non Firebase
+Vous pouvez contrôler si vos données de service Firebase peuvent être utilisées par Google pour fournir une analyse, des informations et des recommandations plus approfondies sur les services Google non Firebase et améliorer les services Google non Firebase . Vous pouvez configurer cela dans votre page de paramètres de confidentialité des données Firebase.
+
+Si ce contrôle est désactivé, les données de service Firebase continueront d'être utilisées à d'autres fins, telles que celles mentionnées ci-dessus, conformément à notre politique de confidentialité et aux conditions applicables, y compris pour faire des recommandations et améliorer les services Firebase , et pour fournir et améliorer les services que vous demandez, tels que les produits Google que vous associez à votre projet Firebase.
+
+Vous avez encore des questions? Nous contacter
+Pour toute question relative à la confidentialité que vous avez qui n'est pas traitée ici, contactez via le formulaire Services de compte .
+
+Cette page vous a-t-elle été utile ?
+Envoyer des commentaires
+Except as otherwise noted, the content of this page is licensed under the Creative Commons Attribution 4.0 License, and code samples are licensed under the Apache 2.0 License. For details, see the Google Developers Site Policies. Java is a registered trademark of Oracle and/or its affiliates.
+
+Last updated 2021-01-28 UTC.
+
+Apprendre
+Guides
+Référence
+Exemples
+Bibliothèques
+GitHub
+Rester connecté
+Blog
+Firebase Summit
+Facebook
+Twitter
+YouTube
+Support
+Contacter le support
+Stack Overflow
+Communauté Slack
+Google group
+Notes de version
+FAQ
+Google Developers
+Android
+Chrome
+Firebase
+Google Cloud Platform
+Tous les produits
+Conditions d'utilisation
+Règles de confidentialité
+Français

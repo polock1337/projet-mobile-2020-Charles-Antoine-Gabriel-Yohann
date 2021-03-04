@@ -1,0 +1,27 @@
+Confidentialité et sécurité dans Firebase
+
+
+Cette page présente les principales informations de sécurité et de confidentialité de Firebase. Que vous souhaitiez lancer un nouveau projet avec Firebase ou que vous souhaitiez savoir comment Firebase fonctionne avec votre projet existant, lisez la suite pour voir comment Firebase peut vous protéger, vous et vos utilisateurs.
+
+Dernière mise à jour: 27 janvier 2021
+
+Protection des données
+Prise en charge de Firebase pour GDPR et CCPA
+Le 25 mai 2018, le règlement général sur la protection des données de l'UE (RGPD) a remplacé la directive européenne de 1995 sur la protection des données. Le 1er janvier 2020, la California Consumer Privacy Act (CCPA) est entrée en vigueur. Google s'engage à aider ses clients à réussir dans le cadre de ces règles de confidentialité, qu'il s'agisse de grands éditeurs de logiciels ou de développeurs indépendants.
+
+Le RGPD impose des obligations aux responsables du traitement et aux sous-traitants, et le CCPA impose des obligations aux entreprises et à leurs prestataires de services. Les clients Firebase agissent généralement en tant que «contrôleur de données» (RGPD) ou «entreprise» (CCPA) pour toutes les données personnelles ou informations sur leurs utilisateurs finaux qu'ils fournissent à Google dans le cadre de leur utilisation de Firebase, et Google fonctionne généralement comme un processeur de données "(GDPR) ou" fournisseur de services "(CCPA).
+
+Cela signifie que les données sont sous le contrôle du client. Les clients sont responsables d'obligations telles que le respect des droits d'une personne en ce qui concerne ses données ou informations personnelles.
+
+Conditions relatives au traitement des données et à la sécurité de Firebase
+Lorsque les clients utilisent Firebase, Google est généralement un processeur de données sous GDPR et traite les données personnelles en leur nom. De même, lorsque les clients utilisent Firebase, Google opère généralement en tant que fournisseur de services sous le CCPA traitant les informations personnelles en leur nom. Les conditions de Firebase incluent les conditions de traitement des données et de sécurité détaillant ces responsabilités.
+
+Certains services Firebase régis par les conditions d'utilisation de Google Cloud Platform (GCP) sont déjà couverts par les conditions de traitement des données associées, les conditions de traitement des données et de sécurité GCP . Une liste complète des services Firebase actuellement régis par les conditions d'utilisation de GCP est disponible dans les conditions d'utilisation des services Firebase .
+
+Crashlytics et App Distribution sont régis par les Conditions d'utilisation de Firebase Crashlytics et Firebase App Distribution , et sont couverts par ces conditions de traitement de données associées .
+
+Google Analytics pour Firebase et Google Analytics sont régis respectivement par les Conditions d'utilisation de Google Analytics pour Firebase et les Conditions d'utilisation de Google Analytics , ainsi que par les Conditions de traitement des données de Google Ads . Pour plus d'informations, reportez-vous à Protection de vos données .
+
+Firebase est certifié selon les principales normes de confidentialité et de sécurité
+Conformité ISO et SOC
+Tous les services Firebase (à part App Distribution et Crashlytics) ont réussi le processus d'évaluation ISO 27001 et SOC 1 , SOC 2 et SOC 3 , et certains ont également terminé le processus de certification ISO 27017 et ISO 27018 :
